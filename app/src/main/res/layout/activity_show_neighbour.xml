@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EBEFF0"
+    tools:context=".showneighbour.ShowNeighbourActivity">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:adjustViewBounds="true"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/test_150"
+            />
+
+        <ImageButton
+            android:id="@+id/backToMain"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_arrow_back"
+            android:contentDescription="Retour à la liste"
+            android:tint="#FFFFFF" />
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_favoris"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="232dp"
+            app:backgroundTint="#FFFFFF"
+            app:srcCompat="@drawable/ic_star"
+            android:contentDescription="Ajouter en favoris" />
+
+        <TextView
+            android:id="@+id/tv_nom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="30dp"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:text="Son nom" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card1"
+            style="@style/cardView"
+            app:layout_constraintTop_toBottomOf="@id/iv_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            >
+
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/card1_tv_titre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Nom de la personne" />
+
+                <ImageView
+                    android:id="@+id/card1_ic1"
+                    style="@style/cardIc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/card1_tv_titre"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_place"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card1_tv_titre" />
+
+
+                <TextView
+                    android:id="@+id/card1_tv_sub1"
+                    style="@style/cardTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/card1_ic1"
+                    app:layout_constraintTop_toTopOf="@id/card1_ic1"
+                    tools:text="St-Pierre-du-Mont à 5 kms" />
+
+                <ImageView
+                    android:id="@+id/card1_ic2"
+                    style="@style/cardIc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/card1_ic1"
+                    android:src="@drawable/ic_phone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card1_ic1"
+                    android:importantForAccessibility="no" />
+
+
+                <TextView
+                    android:id="@+id/card1_tv_sub2"
+                    style="@style/cardTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/card1_ic2"
+                    app:layout_constraintTop_toTopOf="@id/card1_ic2"
+                    tools:text="St-Pierre-du-Mont à 5 kms" />
+
+
+                <ImageView
+                    android:id="@+id/card1_ic3"
+                    style="@style/cardIc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/card1_tv_titre"
+                    android:src="@drawable/ic_phone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card1_ic2"
+                    android:importantForAccessibility="no"
+                    />
+
+
+                <TextView
+                    android:id="@+id/card1_tv_sub3"
+                    style="@style/cardTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/card1_ic3"
+                    app:layout_constraintTop_toTopOf="@id/card1_ic3"
+                    android:text="Lien Facebook" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card2"
+            style="@style/cardView"
+            app:layout_constraintTop_toBottomOf="@id/card1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/card2_tv_titre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="A propos"
+                    android:textAppearance="?attr/textAppearanceHeadline5" />
+
+                <TextView
+                    android:id="@+id/card2_tv_apropos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    tools:text="Bonjour !Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner !J'aime les jeux de cartes tels la belote et le tarot.." />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
