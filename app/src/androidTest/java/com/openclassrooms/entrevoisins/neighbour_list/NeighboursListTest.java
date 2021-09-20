@@ -9,7 +9,6 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -19,7 +18,6 @@ import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAsserti
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.core.IsNull.notNullValue;
 
-import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
@@ -30,7 +28,6 @@ import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 import com.openclassrooms.entrevoisins.utils.MyViewAction;
 
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -84,7 +81,7 @@ public class NeighboursListTest {
     @Test
     public void myNeighboursList_goTo_TheGoodNeighbour() {
         String name = listNeighbours.get(0).getName();
-        onView(Matchers.allOf(withId(R.id.item_list_name), withText(name))).perform(click());
+        onView(allOf(withId(R.id.item_list_name), withText(name), withParent(withParent(withId(R.id.list_neighbours))))).perform(click());
         onView(ViewMatchers.withId(R.id.tv_nom)).check(matches(withText(name)));
     }
 
@@ -110,7 +107,7 @@ public class NeighboursListTest {
         // Affichage d'1 favori
         String name = listNeighbours.get(0).getName();
         onView(withId(R.id.tabs)).perform(swipeRight());
-        onView(Matchers.allOf(withId(R.id.item_list_name), withText(name))).perform(click());
+        onView(allOf(withId(R.id.item_list_name), withText(name))).perform(click());
         onView(withId(R.id.fab_favoris)).perform(click());
         onView(withId(R.id.backToMain)).perform(click());
         onView(withId(R.id.tabs)).perform(swipeLeft());
