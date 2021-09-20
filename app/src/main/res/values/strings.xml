@@ -5,4 +5,10 @@
     <string name="activity_new_neighbour">New neighbour</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="toast_add_favorite">\"%s a été ajouté(e) à vos favoris.\"</string>
+    <string name="toast_already_favorite">\"%s fait déjà partie de vos favoris.\"</string>
+    <string name="retour_la_liste">Retour à la liste</string>
+    <string name="ajouter_en_favoris">Ajouter en favoris</string>
+    <string name="a_propos">A propos</string>
+    <string name="supprimer">Supprimer</string>
 </resources>

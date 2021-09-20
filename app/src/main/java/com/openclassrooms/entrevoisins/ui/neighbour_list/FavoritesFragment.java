@@ -2,8 +2,6 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,7 +15,7 @@ import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.events.AddFavorite;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
-import com.openclassrooms.entrevoisins.events.MessageDeleteFavorite;
+import com.openclassrooms.entrevoisins.events.DeleteFavorite;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
@@ -25,11 +23,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,45 +32,39 @@ import butterknife.ButterKnife;
 
 public class FavoritesFragment extends Fragment {
 
-    String TAG =  "FavoritesFragment";
+    String TAG = "FavoritesFragment";
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
     private List<Neighbour> mFavorites;
-    private MyNeighbourRecyclerViewAdapter adapter;
 
 
     @BindView(R.id.recycler_list_favorites)
     RecyclerView mRecyclerView;
 
 
-    public FavoritesFragment() { // TODO: A quoi ça sert?
-        // Required empty public constructor
-    }
-
+//    public FavoritesFragment() {}
 
     public static FavoritesFragment newInstance(int position) {
-        FavoritesFragment fragment = new FavoritesFragment();
-        return fragment;
+        return new FavoritesFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApiService = DI.getNeighbourApiService();
-        ButterKnife.bind(getActivity());
+        ButterKnife.bind(Objects.requireNonNull(getActivity()));
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favorites, container, false);
         ButterKnife.bind(this, view);
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getContext()), DividerItemDecoration.VERTICAL));
         return view;
     }
 
@@ -90,7 +79,7 @@ public class FavoritesFragment extends Fragment {
     private void initList() {
         mNeighbours = mApiService.getNeighbours();
         mFavorites = filterFavorites();
-        adapter = new MyNeighbourRecyclerViewAdapter(getActivity(), mFavorites, "favorites");
+        MyNeighbourRecyclerViewAdapter adapter = new MyNeighbourRecyclerViewAdapter(getActivity(), mFavorites, "favorites");
         mRecyclerView.setAdapter(adapter);
     }
 
@@ -124,7 +113,7 @@ public class FavoritesFragment extends Fragment {
 
     /*Supprime un favoris à partir de la liste des favoris */
     @Subscribe
-    public void onDeleteFavorites(MessageDeleteFavorite event) {
+    public void onDeleteFavorites(DeleteFavorite event) {
         int index = mNeighbours.indexOf(event.neighbour);
         Log.i(TAG, "onDeleteFavorites: " + index);
         mNeighbours.get(index).setFavorite(false);

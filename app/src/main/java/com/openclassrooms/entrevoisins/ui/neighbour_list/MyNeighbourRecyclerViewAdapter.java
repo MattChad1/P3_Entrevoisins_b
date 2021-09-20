@@ -14,9 +14,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
-import com.openclassrooms.entrevoisins.events.MessageDeleteFavorite;
+import com.openclassrooms.entrevoisins.events.DeleteFavorite;
 import com.openclassrooms.entrevoisins.model.Neighbour;
-import com.openclassrooms.entrevoisins.showneighbour.ShowNeighbourActivity;
+import com.openclassrooms.entrevoisins.ui.showneighbour.ShowNeighbourActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -54,24 +54,15 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 .into(holder.mNeighbourAvatar);
 
 
-        holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (type.equals("general"))
-                    EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
-                else if (type.equals("favorites"))
-                    EventBus.getDefault().post(new MessageDeleteFavorite(neighbour));
-            }
+        holder.mDeleteButton.setOnClickListener(v -> {
+            if (type.equals("general"))
+                EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
+            else if (type.equals("favorites"))
+                EventBus.getDefault().post(new DeleteFavorite(neighbour));
         });
 
-        holder.mNeighbourAvatar.setOnClickListener(view -> {
-            goDetail(neighbour);
-        });
-
-
-        holder.mNeighbourName.setOnClickListener(view -> {
-            goDetail(neighbour);
-        });
+        holder.mNeighbourAvatar.setOnClickListener(view -> goDetail(neighbour));
+        holder.mNeighbourName.setOnClickListener(view -> goDetail(neighbour));
     }
 
 
