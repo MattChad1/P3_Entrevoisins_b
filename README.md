@@ -9,9 +9,9 @@
 _Il est aussi possible de récupérer le projet au format zip en se rendant sur https://github.com/MattChad1/P3_Entrevoisins_b.git puis en cliquant sur **Code>Download ZIP**_ 
 
 
-##Installation d'un émulateur##
+##Installation d'un émulateur
 
-Si vous n'avez pas d'émulateur installé, suivez les instructions suivantes pour pouvoir visualiser le projet : 
+Si vous n'avez pas d'émulateur installé, suivez ces instructions pour pouvoir visualiser le projet : 
 1. Cliquez sur **Tools>AVD Manager**
 2. Cliquez sur **+Create Virtual Device**
 3. Choisissez un téléphone comme le _Pixel 4_ puis cliquez sur **Next**
@@ -21,5 +21,5 @@ Si vous n'avez pas d'émulateur installé, suivez les instructions suivantes pou
 
 ## Exécution du projet
 
-Dans la barre d'outil, sélectionnez **app**, votre émulateur (par exemple le Pixel 4), et cliquez sur la flèche verte. 
+Dans la barre d'outil, sélectionnez **app** dans la première liste déroulante, votre émulateur (par exemple le Pixel 4) dans la seconde, puis cliquez sur la flèche verte. 
 La compilation et l'affichage sur l'émulateur peuvent aussi s'effectuer via le raccourcis **MAJ+F10**.
