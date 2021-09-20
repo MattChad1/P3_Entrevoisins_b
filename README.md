@@ -9,7 +9,7 @@
 _Il est aussi possible de récupérer le projet au format zip en se rendant sur https://github.com/MattChad1/P3_Entrevoisins_b.git puis en cliquant sur **Code>Download ZIP**_ 
 
 
-##Installation d'un émulateur
+## Installation d'un émulateur
 
 Si vous n'avez pas d'émulateur installé, suivez ces instructions pour pouvoir visualiser le projet : 
 1. Cliquez sur **Tools>AVD Manager**
