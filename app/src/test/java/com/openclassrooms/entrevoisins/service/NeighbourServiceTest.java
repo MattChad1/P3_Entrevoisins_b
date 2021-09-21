@@ -5,8 +5,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import android.support.v4.app.Fragment;
+
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.ui.neighbour_list.FavoritesFragment;
+import com.openclassrooms.entrevoisins.utils.FavoritesUtils;
 
 import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.junit.Before;
@@ -24,10 +28,12 @@ import java.util.Objects;
 public class NeighbourServiceTest {
 
     private NeighbourApiService service;
+    private Fragment favoritesFragment;
 
     @Before
     public void setup() {
         service = DI.getNewInstanceApiService();
+        favoritesFragment = new FavoritesFragment();
     }
 
     @Test
@@ -47,15 +53,15 @@ public class NeighbourServiceTest {
     @Test
     public void filterFavorites() {
         long expectedNumFaborites = DummyNeighbourGenerator.DUMMY_NEIGHBOURS.stream().filter(Neighbour::getFavorite).count();
-        List<Neighbour> favorites = Neighbour.filterFavorites(service.getNeighbours());
+        List<Neighbour> neighbours = service.getNeighbours();
+        List<Neighbour> favorites = FavoritesUtils.filterFavorites(neighbours);
         assertEquals(favorites.size(), expectedNumFaborites);
-
     }
 
     @Test
     public void addFavorite() {
         List<Neighbour> neighbours = service.getNeighbours();
-        Neighbour.addFavorite(neighbours.get(0), neighbours);
+        FavoritesUtils.addFavorite(neighbours.get(0), neighbours);
         assertTrue(neighbours.get(0).getFavorite());
     }
 }

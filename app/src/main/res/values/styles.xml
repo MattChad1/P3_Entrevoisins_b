@@ -19,18 +19,19 @@
 
 
     <style name="cardView">
-        <item name="android:layout_marginLeft">20dp</item>
-        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:layout_marginRight">12dp</item>
         <item name="cardCornerRadius">8dp</item>
     </style>
 
     <style name="cardTv">
         <item name="android:textSize">14sp</item>
         <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginTop">3dp</item>
     </style>
 
     <style name="cardIc">
-        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginTop">13dp</item>
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:tint">@color/colorAccent</item>
     </style>

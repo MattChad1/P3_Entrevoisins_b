@@ -1,8 +1,5 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
-import static com.openclassrooms.entrevoisins.model.Neighbour.addFavorite;
-import static com.openclassrooms.entrevoisins.model.Neighbour.filterFavorites;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,6 +18,7 @@ import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.events.DeleteFavorite;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
+import com.openclassrooms.entrevoisins.utils.FavoritesUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -72,7 +70,7 @@ public class FavoritesFragment extends Fragment {
 
     private void initList() {
         mNeighbours = mApiService.getNeighbours();
-        mFavorites = filterFavorites(mNeighbours);
+        mFavorites = FavoritesUtils.filterFavorites(mNeighbours);
         MyNeighbourRecyclerViewAdapter adapter = new MyNeighbourRecyclerViewAdapter(getActivity(), mFavorites, "favorites");
         mRecyclerView.setAdapter(adapter);
     }
@@ -101,7 +99,7 @@ public class FavoritesFragment extends Fragment {
     @Subscribe(sticky = true)
     public void onAddFavorite(AddFavorite event) {
         Neighbour neighbour = event.neighbour;
-        addFavorite(neighbour, mNeighbours);
+        FavoritesUtils.addFavorite(neighbour, mNeighbours);
         initList();
     }
 
@@ -121,4 +119,6 @@ public class FavoritesFragment extends Fragment {
         mNeighbours.remove(event.neighbour);
         initList();
     }
+
+
 }
