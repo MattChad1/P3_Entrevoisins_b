@@ -1,5 +1,8 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
+import static com.openclassrooms.entrevoisins.model.Neighbour.addFavorite;
+import static com.openclassrooms.entrevoisins.model.Neighbour.filterFavorites;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -42,8 +45,6 @@ public class FavoritesFragment extends Fragment {
     RecyclerView mRecyclerView;
 
 
-//    public FavoritesFragment() {}
-
     public static FavoritesFragment newInstance(int position) {
         return new FavoritesFragment();
     }
@@ -68,17 +69,10 @@ public class FavoritesFragment extends Fragment {
         return view;
     }
 
-    public List<Neighbour> filterFavorites() {
-        List<Neighbour> re = new ArrayList<>();
-        for (Neighbour n : mNeighbours) {
-            if (n.getFavorite()) re.add(n);
-        }
-        return re;
-    }
 
     private void initList() {
         mNeighbours = mApiService.getNeighbours();
-        mFavorites = filterFavorites();
+        mFavorites = filterFavorites(mNeighbours);
         MyNeighbourRecyclerViewAdapter adapter = new MyNeighbourRecyclerViewAdapter(getActivity(), mFavorites, "favorites");
         mRecyclerView.setAdapter(adapter);
     }
@@ -106,8 +100,8 @@ public class FavoritesFragment extends Fragment {
     /* Ajoute un favoris avec Eventbus */
     @Subscribe(sticky = true)
     public void onAddFavorite(AddFavorite event) {
-        int index = mNeighbours.indexOf(event.neighbour);
-        mNeighbours.get(index).setFavorite(true);
+        Neighbour neighbour = event.neighbour;
+        addFavorite(neighbour, mNeighbours);
         initList();
     }
 
@@ -115,7 +109,6 @@ public class FavoritesFragment extends Fragment {
     @Subscribe
     public void onDeleteFavorites(DeleteFavorite event) {
         int index = mNeighbours.indexOf(event.neighbour);
-        Log.i(TAG, "onDeleteFavorites: " + index);
         mNeighbours.get(index).setFavorite(false);
         initList();
     }

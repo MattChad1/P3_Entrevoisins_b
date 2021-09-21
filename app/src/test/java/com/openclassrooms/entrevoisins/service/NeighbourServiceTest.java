@@ -1,7 +1,9 @@
 package com.openclassrooms.entrevoisins.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
@@ -40,5 +42,20 @@ public class NeighbourServiceTest {
         Neighbour neighbourToDelete = service.getNeighbours().get(0);
         service.deleteNeighbour(neighbourToDelete);
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
+    }
+
+    @Test
+    public void filterFavorites() {
+        long expectedNumFaborites = DummyNeighbourGenerator.DUMMY_NEIGHBOURS.stream().filter(Neighbour::getFavorite).count();
+        List<Neighbour> favorites = Neighbour.filterFavorites(service.getNeighbours());
+        assertEquals(favorites.size(), expectedNumFaborites);
+
+    }
+
+    @Test
+    public void addFavorite() {
+        List<Neighbour> neighbours = service.getNeighbours();
+        Neighbour.addFavorite(neighbours.get(0), neighbours);
+        assertTrue(neighbours.get(0).getFavorite());
     }
 }

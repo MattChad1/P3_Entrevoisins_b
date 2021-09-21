@@ -70,7 +70,7 @@ public class ShowNeighbourActivity extends AppCompatActivity {
         tvAPropos.setText(neighbour.getAboutMe());
 
         if (neighbour.getFavorite())
-            fabFavoris.setColorFilter(getResources().getColor(R.color.colorAccent));
+            fabFavoris.setColorFilter(getResources().getColor(R.color.yellow));
 
         /* Clic sur Fab = ajout d'un favori */
         fabFavoris.setOnClickListener(view -> {
@@ -78,7 +78,7 @@ public class ShowNeighbourActivity extends AppCompatActivity {
                 Toast.makeText(this, getString(R.string.toast_add_favorite, neighbour.getName()), Toast.LENGTH_SHORT).show();
                 EventBus.getDefault().postSticky(new AddFavorite(neighbour));
                 neighbour.setFavorite(true);
-                fabFavoris.setColorFilter(getResources().getColor(R.color.colorAccent));
+                fabFavoris.setColorFilter(getResources().getColor(R.color.yellow));
             } else
                 Toast.makeText(this, getString(R.string.toast_already_favorite, neighbour.getName()), Toast.LENGTH_SHORT).show();
         });

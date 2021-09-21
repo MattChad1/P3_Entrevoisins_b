@@ -79,14 +79,12 @@ public class NeighbourFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Log.i("NeighbourFragment", "onstart()");
         EventBus.getDefault().register(this);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Log.i("NeighbourFragment", "onStop()");
         EventBus.getDefault().unregister(this);
     }
 

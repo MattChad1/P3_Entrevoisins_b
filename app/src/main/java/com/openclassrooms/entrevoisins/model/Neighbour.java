@@ -1,6 +1,8 @@
 package com.openclassrooms.entrevoisins.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -107,6 +109,14 @@ public class Neighbour implements Serializable {
         this.aboutMe = aboutMe;
     }
 
+    public static List<Neighbour> filterFavorites(List<Neighbour> mNeighbours) {
+        List<Neighbour> re = new ArrayList<>();
+        for (Neighbour n : mNeighbours) {
+            if (n.getFavorite()) re.add(n);
+        }
+        return re;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -126,5 +136,10 @@ public class Neighbour implements Serializable {
 
     public void setFavorite(Boolean favorite) {
         isFavorite = favorite;
+    }
+
+    public static void addFavorite(Neighbour neighbour, List<Neighbour> mNeighbours) {
+        int index = mNeighbours.indexOf(neighbour);
+        mNeighbours.get(index).setFavorite(true);
     }
 }
